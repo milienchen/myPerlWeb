@@ -1,8 +1,54 @@
-#!/usr/bin/perl -w  如果是linux環境就加此參數讓os知道去哪裡載入perl.exe使用
-#perl -cw myapp.pl  檢查語法用
-#perl -w myapp.pl   若語法有誤加-w參數會顯示
-#
-#@ARGV 是內建的陣列,不必宣告就可以拿來用. 裡面存放著 command line argument 命令列上的參數
+#!/usr/bin/perl -w  
+#   scalar:$  array:@  :%
+use strict;
+use warnings;
 
-print "ggla\n"x3;
-print "gglb"."ggP";
+my %bb = ('a'=>111,'b'=>222,'c'=>333);
+my %cc = ('a'=>1111,'b'=>2222,'d'=>3333);
+print $bb{'a'}."\n";
+print $bb{'b'}."\n";
+print $bb{'d'}."\b";#不存在的值
+
+print "\n\r===== test if===== \n\r";
+if (%bb==%cc){
+	print "%b==%cc\n\r";
+}else{
+	print "%b==%cc else\n\r";
+}
+
+print "\n ===== test while ===== \n";
+my $v =2;
+while($v<200){
+	print $v."\t\b";
+	$v+=1;
+};
+
+print "\n=====  test for ===== \n";
+my $i;
+for ($i = 10; $i > 0; $i -= 1) {
+    print $i."\t";
+}
+
+print "\n=====  test foreach ===== \n";
+foreach $i (reverse((1 .. 10))) {
+    print $i."\t";
+}
+
+print "\n=====  test subroutine ===== \n";
+sub ttt($\@\%){
+	print "-----subbroutine (ttt)  start -----\r\n";
+	my $param1 = shift;
+	my @param2 = @{shift()};  # @{@a2}
+	my %param3 = %{shift()};
+
+	print join(", ", @param2)."\n";
+	foreach( @param2){
+		print  "$_\n";
+	};
+
+	print "\n-----subbroutine (ttt)  end -----\r\n";
+}; 
+
+my @inArray = (1,2,3,4);
+my %inHash = ('a'=>11,'b'=>22,'c'=>33);
+ttt('trytry', @inArray,%inHash);
