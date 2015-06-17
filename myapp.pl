@@ -52,3 +52,10 @@ sub ttt($\@\%){
 my @inArray = (1,2,3,4);
 my %inHash = ('a'=>11,'b'=>22,'c'=>33);
 ttt('trytry', @inArray,%inHash);
+
+#產生BRE測試檔30個
+for(my $tempi=1;$tempi<=30;$tempi++){
+	open my $fh, '>', 'try_' . $tempi.'.txt';
+    print {$fh} $fh ."\t" . "\n this file is writed by mingchi use perl \n\r  time is : ".localtime ;
+    close $fh;
+};
